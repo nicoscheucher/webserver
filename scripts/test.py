@@ -1,4 +1,8 @@
+import logging
 import paramiko
+
+# Setze das Paramiko-Logging-Level auf DEBUG
+logging.basicConfig(level=logging.DEBUG)
 
 # SSH-Verbindungsinformationen
 hostname = '10.3.14.121'
