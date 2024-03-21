@@ -35,7 +35,7 @@ def main():
         powershell_command = '''
         New-ADUser -Name "Jack Robinson" -GivenName "Jack" -Surname "Robinson" 
         -SamAccountName "J.Robinson" -UserPrincipalName "J.Robinson@nifede.pri" 
-        -Path "OU=Importuser,DC=nifede,DC=pri" -AccountPassword (ConvertTo-SecureString "Start123$" -AsPlainText -Force) 
+        -Path "OU=Users,DC=nifede,DC=pri" -AccountPassword (ConvertTo-SecureString "Start123$" -AsPlainText -Force) 
         -Enabled $true
         '''
         execute_powershell_command(ssh_client, powershell_command)
