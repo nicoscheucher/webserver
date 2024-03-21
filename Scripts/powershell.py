@@ -16,9 +16,10 @@ try:
 
     # PowerShell-Befehl zum Erstellen eines Benutzers im Active Directory
     powershell_command = '''
-    New-ADUser -Name "John Doe" -SamAccountName "johndoe" -GivenName "John" -Surname "Doe" `
-    -UserPrincipalName "johndoe@example.com" -Path "OU=User,DC=nifede,DC=pri" `
-    -AccountPassword (ConvertTo-SecureString "Passwort123!" -AsPlainText -Force) -Enabled $true;
+    (New-ADUser -Name "John Doe" -SamAccountName "johndoe" -GivenName "John" -Surname "Doe" `
+    -UserPrincipalName "johndoe@nifede.pri" -Path "OU=User,DC=nifede,DC=pri" `
+    -AccountPassword (ConvertTo-SecureString "Passwort123!" -AsPlainText -Force) -Enabled $true -PassThru); `
+    Write-Host "Benutzer 'John Doe' wurde erfolgreich im Active Directory erstellt."
     '''
 
     # Ausführen des PowerShell-Befehls
