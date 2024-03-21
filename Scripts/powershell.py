@@ -15,12 +15,7 @@ try:
     print("Erfolgreich mit dem Server verbunden.")
 
     # PowerShell-Befehl zum Erstellen eines Benutzers im Active Directory
-    powershell_command = '''
-    (New-ADUser -Name "John Doe" -SamAccountName "johndoe" -GivenName "John" -Surname "Doe" `
-    -UserPrincipalName "johndoe@nifede.pri" -Path "OU=User,DC=nifede,DC=pri" `
-    -AccountPassword (ConvertTo-SecureString "Passwort123!" -AsPlainText -Force) -Enabled $true -PassThru); `
-    Write-Host "Benutzer 'John Doe' wurde erfolgreich im Active Directory erstellt."
-    '''
+    powershell_command = '''New-ADUser -Name "Jack Robinson" -GivenName "Jack" -Surname "Robinson" -SamAccountName "J.Robinson" -UserPrincipalName "J.Robinson@nifede.pri" -Path "OU=Importuser,DC=nifede,DC=pri" -AccountPassword (ConvertTo-SecureString "Start123$" -AsPlainText -Force) -Enabled $true'''
 
     # Ausführen des PowerShell-Befehls
     stdin, stdout, stderr = ssh_client.exec_command('powershell.exe -Command "{}"'.format(powershell_command))
