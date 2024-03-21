@@ -1,17 +1,10 @@
-import subprocess
+import winrm
 
-# Definiere die PowerShell-Befehle, um eine Verbindung zum Server herzustellen und das whoami-Kommando auszuführen
-powershell_commands = [
-    "$Username = 'NIFEDE\Administrator'",
-    "$Password = ConvertTo-SecureString 'Start123$' -AsPlainText -Force",
-    "$Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)",
-    "$Session = New-PSSession -ComputerName SERVER_NAME -Credential $Credential",
-    "Invoke-Command -Session $Session -ScriptBlock { whoami }",
-    "Remove-PSSession $Session"
-]
+# Erstelle eine Verbindung zum Windows-Server
+session = winrm.Session('10.3.14.121', auth=('NIFEDE\Administrator', ''))
 
-# Verbinde dich per PowerShell und führe das whoami-Kommando aus
-output = subprocess.run(["powershell.exe", "-Command", ";".join(powershell_commands)], capture_output=True, text=True)
+# Führe das whoami-Kommando auf dem Server aus
+result = session.run_cmd('whoami')
 
 # Gib das Ergebnis aus
-print("whoami output:", output.stdout)
+print("whoami output:", result.std_out.decode())
