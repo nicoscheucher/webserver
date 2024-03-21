@@ -15,7 +15,7 @@ try:
     print("Erfolgreich mit dem Server verbunden.")
 
     # Ausführen von ipconfig-Befehl
-    stdin, stdout, stderr = ssh_client.exec_command('ipconfig')
+    stdin, stdout, stderr = ssh_client.exec_command('New-ADUser -Name "John Doe" -SamAccountName "johndoe" -GivenName "John" -Surname "Doe" -UserPrincipalName "johndoe@example.com" -Path "OU=Users,DC=example,DC=com" -AccountPassword (ConvertTo-SecureString "Passwort123!" -AsPlainText -Force) -Enabled $true; Write-Host "Benutzer 'John Doe' wurde erfolgreich im Active Directory erstellt."')
     
     # Ausgabe lesen
     output = stdout.read().decode()
